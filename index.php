@@ -64,7 +64,6 @@ $textNumber = [
   'знаков',
 ];
 
-
 // Можно интерпретировать иначе и сложить числа как строки.
 /**
  * @param array $textNumber
@@ -86,6 +85,7 @@ function twoMethod(array $someNumbers): string {
   foreach ($someNumbers as $number) {
     $prev = gmp_add($prev, $number);
   }
+
   return gmp_strval($prev);
 }
 
@@ -95,7 +95,7 @@ function twoMethod(array $someNumbers): string {
  *
  * @return string
  */
-function threeMethod(string $num1,string $num2): string {
+function threeMethod(string $num1, string $num2): string {
   $result = '';
   $max = strrev(max($num1, $num2));
   $min = strrev(min($num1, $num2));
@@ -119,6 +119,7 @@ function threeMethod(string $num1,string $num2): string {
  * @return string
  */
 function fourMethod($num1, $num2): string {
+
   return bcadd($num1, $num2);
 }
 
@@ -133,6 +134,7 @@ function sumHelper(array $someNumbers, callable $callback): string {
   foreach ($someNumbers as $number) {
     $prev = $callback($prev, $number);
   }
+
   return $prev;
 }
 
