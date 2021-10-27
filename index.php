@@ -1,8 +1,58 @@
 <?php
 $someNumbers = [
-  2,
-  2,
-  2,
+  '444',
+  '222',
+  '2223',
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
+//  55555555555555555555555555555555555555555555555555,
 ];
 
 // можно понять буквально и сложить фразу )))
@@ -14,46 +64,14 @@ $textNumber = [
   'знаков',
 ];
 
-//1 method
 
+// Можно интерпретировать иначе и сложить числа как строки.
 /**
- * @param array $someNumbers
- *
- * @return int|mixed
- */
-function oneMethod(array $someNumbers) {
-  $result = 0;
-  foreach ($someNumbers as $number) {
-    $result += $number;
-  }
-  return $result;
-}
-
-echo oneMethod($someNumbers) . '<hr>';
-
-//2 method
-
-/**
- * @param array $someNumbers
- *
- * @return float|int
- */
-function twoMethod(array $someNumbers) {
-  return array_sum($someNumbers);
-}
-
-echo twoMethod($someNumbers) . '<hr>';
-
-//3 method
-
-/**
- * @param array $someNumbers
- *
- * Тоже можно считать как способ, не сложение цифр как чисел, а сложение их как строк.
+ * @param array $textNumber
  *
  * @return string
  */
-function threeMethod(array $textNumber): string {
+function oneMethod(array $textNumber): string {
   $result = '';
   foreach ($textNumber as $number) {
     $result .= $number;
@@ -61,37 +79,77 @@ function threeMethod(array $textNumber): string {
   return $result;
 }
 
-echo threeMethod($textNumber) . '<hr>';
-
-//4 method
-
-/**
- * @param ...$numbers
- *
- * @return int|mixed
- */
-function fourMethod(...$numbers) {
-  $result = 0;
-  foreach ($numbers as $number) {
-    $result += $number;
-  }
-  return $result;
-}
-
-echo fourMethod(2,2,2) . '<hr>';
-
-//5 method
-
 /**
  * @param array $someNumbers
  *
- * @return mixed
+ * @return string
  */
-function fiveMethod(array $someNumbers) {
-  return array_reduce($someNumbers, function ($result, $item) {
-    $result += $item;
-    return $result;
-  });
+function twoMethod(array $someNumbers): string {
+  $prev = '0';
+  foreach ($someNumbers as $number) {
+    $prev = gmp_add($prev,$number);
+  }
+  return gmp_strval($prev);
 }
 
-echo fiveMethod($someNumbers) . '<hr>';
+/**
+ * @param $num1
+ * @param $num2
+ *
+ * @return string
+ */
+function threeMethod ( $num1,  $num2): string {
+
+  if (strlen($num2) > strlen($num1)) {
+    $tmp = $num1;
+    $num1 = $num2;
+    $num2 = $tmp;
+  }
+
+  $num1 = strrev($num1);
+  $num2 = strrev($num2);
+
+  $num1_len = strlen($num1);
+
+  $dec = 0;
+
+  $result = '';
+  for ($i = 0; $i < $num1_len; $i++) {
+    $num2_value = isset($num2[$i]) ? (int)$num2[$i] : 0;
+    $sum = (int)$num1[$i] + $num2_value + $dec;
+    $dec = ($sum < 10) ? 0 : 1;
+    $result .= $dec ? $sum - 10 : $sum;
+  }
+  $result .= $dec ?: '';
+
+  return strrev($result);
+}
+
+/**
+ * @param $num1
+ * @param $num2
+ *
+ * @return string
+ */
+function fourMethod ($num1, $num2): string {
+  return gmp_strval($num1, $num2);
+}
+
+/**
+ * @param array $someNumbers
+ * @param callable $callback
+ *
+ * @return string
+ */
+function sunHelper(array $someNumbers , callable $callback): string {
+  $prev = '0';
+  foreach ($someNumbers as $number) {
+    $prev = $callback($prev,$number);
+  }
+  return $prev;
+}
+
+echo '1- ' . oneMethod($textNumber) . '<br>';
+echo '2- ' . twoMethod($someNumbers) . '<br>';
+echo '3- ' . sunHelper($someNumbers, 'threeMethod') . '<br>';
+echo '4- ' . sunHelper($someNumbers, 'fourMethod') . '<br>';
