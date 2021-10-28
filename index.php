@@ -89,6 +89,7 @@ function twoMethod(array $someNumbers): string {
   return gmp_strval($prev);
 }
 
+//todo: Я бы еще подумал нат тем как убрать strrev().
 /**
  * @param string $num1
  * @param string $num2
@@ -98,14 +99,16 @@ function twoMethod(array $someNumbers): string {
 function threeMethod(string $num1, string $num2): string {
   $result = '';
   $max = strrev(max($num1, $num2));
-  $min = strrev(min($num1, $num2));
+  $min = min($num1, $num2);
+  $min = strrev(str_pad($min,strlen($max),'0',STR_PAD_LEFT));
+
   $dec = 0;
 
   for ($i = 0; $i < strlen($max); $i++) {
-    $minValue = (int) $min[$i] ?? 0;
+    $minValue = $min[$i] ?? 0;
     $sum = (int) $max[$i] + $minValue + $dec;
-    $dec = ($sum < 10) ? 0 : 1;
-    $result .= ($dec === 1) ? $sum - 10 : $sum;
+    $dec = intdiv($sum, 10);
+    $result .= ($dec === 1) ? $sum % 10 : $sum;
   }
   $result .= $dec ?: '';
 
