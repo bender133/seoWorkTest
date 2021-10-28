@@ -1,7 +1,5 @@
 <?php
 
-// todo: Хотел завернуть всё дело в класс и добавить проверки и исключения, но на это немного не хватило времени.
-
 $someNumbers = [
   '11111111111111111111111111111111111111111111111111',
   '11111111111111111111111111111111111111111111111111',
@@ -100,7 +98,6 @@ function twoMethod(array $someNumbers): string {
   return gmp_strval($prev);
 }
 
-//todo: Я бы еще подумал нат тем как убрать strrev().
 /**
  * @param string $num1
  * @param string $num2
@@ -112,7 +109,6 @@ function threeMethod(string $num1, string $num2): string {
   $max = max($num1, $num2);
   $min = min($num1, $num2);
   $min = (int) $min === 0 ?: str_pad($min,strlen($max),'0',STR_PAD_LEFT);
-
   $dec = 0;
 
   for ($i = strlen($max) - 1; $i >= 0 ; $i--) {
