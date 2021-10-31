@@ -108,7 +108,7 @@ function threeMethod(string $num1, string $num2): string {
   $result = '';
   $max = max($num1, $num2);
   $min = min($num1, $num2);
-  $min = (int) $min === 0 ?: str_pad($min,strlen($max),'0',STR_PAD_LEFT);
+  $min = (int) $min === 0 ? 0 : str_pad($min,strlen($max),'0',STR_PAD_LEFT);
   $dec = 0;
 
   for ($i = strlen($max) - 1; $i >= 0 ; $i--) {
